@@ -40,7 +40,7 @@ app.get('/health', (_, res) => res.json({
 }));
 
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`\n🚀  Meta Generator API  →  http://localhost:${PORT}`);
   console.log(`──────────────────────────────────────`);
   console.log(`   GET   /api/fetch?url=<url>`);
