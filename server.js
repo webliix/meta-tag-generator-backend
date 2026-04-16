@@ -1,14 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+
 import fetchRouter from './routes/fetch.js';
 import generateRouter from './routes/generate.js';
 
 dotenv.config();
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,8 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 // ──────────────────────────────────────────────
 // API Routes
 // ──────────────────────────────────────────────
-app.use('/api/fetch',    fetchRouter);     // GET  /api/fetch?url=<url>
-app.use('/api/generate', generateRouter);  // POST /api/generate
+// app.use('/api/fetch',    fetchRouter);     // GET  /api/fetch?url=<url>
+// app.use('/api/generate', generateRouter);  // POST /api/generate
 
 // Health check
 app.get('/health', (_, res) => res.json({
@@ -39,7 +36,12 @@ app.get('/health', (_, res) => res.json({
   version: '2.0.0',
 }));
 
+app.get('/', (req, res) => {
+  res.send("Server is running");
+});
 
+console.log("✅ Starting server...");
+console.log("ENV PORT:", process.env.PORT);
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`\n🚀  Meta Generator API  →  http://localhost:${PORT}`);
   console.log(`──────────────────────────────────────`);
