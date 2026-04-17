@@ -26,8 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 // ──────────────────────────────────────────────
 // API Routes
 // ──────────────────────────────────────────────
-// app.use('/api/fetch',    fetchRouter);     // GET  /api/fetch?url=<url>
-// app.use('/api/generate', generateRouter);  // POST /api/generate
+app.use('/api/fetch',    fetchRouter);     // GET  /api/fetch?url=<url>
+app.use('/api/generate', generateRouter);  // POST /api/generate
 
 // Health check
 app.get('/health', (_, res) => res.json({
